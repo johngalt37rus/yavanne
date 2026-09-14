@@ -1,1 +1,204 @@
-placeholder
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Я В ВАННЕ: Трактат профессора Алексеева</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #1B3A3F;
+    --ink-deep: #12262A;
+    --paper: #EDE3CB;
+    --wax: #7A2331;
+    --wax-dark: #591825;
+    --gold: #B08D3E;
+    --milk: #F6EFDD;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top left, rgba(176,141,62,0.08), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(27,58,63,0.06), transparent 55%),
+      var(--paper);
+    color: var(--ink-deep);
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+  }
+  h1,h2, .display{ font-family: 'Fraunces', serif; color: var(--ink); margin:0; }
+  .wrap{ max-width: 720px; margin:0 auto; padding: 0 26px 100px; }
+
+  /* TITLE */
+  .title-page{
+    min-height: 100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; position:relative; padding: 50px 24px 40px;
+    border-bottom: 1px solid rgba(27,58,63,0.25);
+  }
+  .ripple-bg{ position:absolute; inset:0; overflow:hidden; z-index:0; }
+  .ripple-bg svg{ position:absolute; bottom:-2px; left:0; width:100%; }
+  .title-inner{ position:relative; z-index:1; max-width: 540px; }
+  .domain-tag{ font-style:italic; font-size:14.5px; opacity:0.75; margin-bottom:28px; }
+  .faculty{ font-size:13px; color:var(--wax-dark); letter-spacing:0.13em; margin-bottom:16px; }
+  .title-page h1{ font-size: clamp(32px,6vw,50px); font-weight:600; line-height:1.14; }
+  .title-page h1 em{ font-style:italic; font-weight:500; color:var(--wax-dark); }
+  .subtitle{ font-family:'Fraunces',serif; font-style:italic; font-size:18px; margin-top:12px; opacity:0.85; }
+  .author-block{ margin-top:38px; }
+  .author-name{ font-family:'Fraunces',serif; font-size:20px; font-weight:600; }
+  .author-title{ font-style:italic; opacity:0.75; font-size:15px; margin-top:4px; }
+  .seal{
+    width:112px; height:112px; margin:36px auto 0; position:relative;
+    opacity:0; transform: scale(2.4) rotate(-14deg);
+    animation: stamp 0.55s cubic-bezier(.2,.9,.3,1.1) 0.5s forwards;
+  }
+  @keyframes stamp{
+    0%{opacity:0; transform: scale(2.6) rotate(-18deg) translateY(-30px);}
+    55%{opacity:1;}
+    70%{transform: scale(0.94) rotate(-4deg) translateY(0);}
+    100%{opacity:1; transform: scale(1) rotate(-6deg) translateY(0);}
+  }
+  @media (prefers-reduced-motion: reduce){ .seal{ animation:none; opacity:1; transform: scale(1) rotate(-6deg);} }
+  .dedication{ margin-top:32px; font-size:15px; font-style:italic; opacity:0.8; max-width:380px; }
+  .scroll-hint{ position:absolute; bottom:22px; left:50%; transform:translateX(-50%); font-size:12.5px; opacity:0.5; }
+
+  /* CONTENT */
+  .eyebrow{ font-size:13.5px; font-style:italic; color:var(--wax-dark); margin-bottom:8px; }
+  .chapter{ padding-top:56px; border-top:1px solid rgba(27,58,63,0.18); margin-top:56px; }
+  .chapter-num{ font-family:'Fraunces',serif; font-style:italic; color:var(--gold); font-size:16px; margin-bottom:6px; display:block; }
+  .chapter h2{ font-size:27px; font-weight:600; margin-bottom:20px; max-width:460px; }
+  .chapter p{ max-width:62ch; }
+  .chapter p + p{ margin-top:16px; }
+  .first-chapter p:first-of-type::first-letter{
+    font-family:'Fraunces',serif; font-size:60px; font-weight:600; float:left;
+    line-height:0.8; padding-right:9px; padding-top:5px; color:var(--wax);
+  }
+  ul.findings{ list-style:none; margin:20px 0; padding:0; max-width:60ch; }
+  ul.findings li{ position:relative; padding-left:28px; margin-bottom:12px; }
+  ul.findings li::before{ content:"❧"; position:absolute; left:0; top:-1px; color:var(--gold); font-size:16px; }
+
+  .badges-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin: 22px 0 6px;
+  }
+  .badge{
+    font-size:13px; font-style:italic; color:var(--wax-dark);
+    border:1px solid rgba(122,35,49,0.35); border-radius:20px;
+    padding:5px 14px; background: rgba(246,239,221,0.6);
+    white-space:nowrap;
+  }
+
+  .benefits-grid{
+    display:grid; grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    margin: 26px 0 8px;
+    max-width: 64ch;
+  }
+  .benefit{
+    border-left: 2px solid var(--gold);
+    padding-left: 16px;
+  }
+  .benefit-title{
+    font-family:'Fraunces', serif; font-weight:600; font-size:17px;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .benefit-text{ font-size: 15.5px; opacity: 0.88; line-height:1.55; }
+  @media (max-width:560px){
+    .benefits-grid{ grid-template-columns: 1fr; }
+  }
+  blockquote{ margin:24px 0; padding:4px 0 4px 20px; border-left:3px solid var(--gold); font-style:italic; max-width:56ch; }
+  blockquote cite{ display:block; margin-top:6px; font-style:normal; font-size:14px; opacity:0.65; }
+
+  /* INTERACTIVE WIDGET */
+  .lab{
+    margin-top: 30px;
+    background: var(--milk);
+    border: 1px solid rgba(122,35,49,0.25);
+    border-radius: 4px;
+    padding: 24px 26px;
+    max-width: 62ch;
+  }
+  .lab-label{ font-size:13.5px; font-style:italic; color:var(--wax-dark); margin-bottom:10px; }
+  .lab-result{
+    font-family:'Fraunces',serif; font-style:italic; font-size:19px;
+    min-height: 52px; display:flex; align-items:center;
+    color: var(--ink);
+  }
+  .lab button{
+    margin-top: 12px;
+    font-family:'EB Garamond', serif; font-size:16px; font-style:italic;
+    background: var(--wax); color: var(--milk);
+    border:none; padding: 10px 22px; border-radius: 3px;
+    cursor:pointer; transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .lab button:hover{ background: var(--wax-dark); transform: translateY(-1px); }
+  .lab button:active{ transform: translateY(0); }
+  .lab-count{ font-size:13px; opacity:0.55; margin-top:8px; }
+
+  /* BIB + CLOSING */
+  .bib{ padding-top:56px; border-top:1px solid rgba(27,58,63,0.18); margin-top:56px; }
+  .bib h2{ font-size:24px; margin-bottom:20px; }
+  .bib ol{ padding-left:20px; font-size:16px; }
+  .bib li{ margin-bottom:12px; }
+  .bib .journal{ font-style:italic; }
+  .closing{ padding-top:56px; margin-top:56px; border-top:1px solid rgba(27,58,63,0.18); text-align:center; }
+  .closing .display{ font-size:24px; font-style:italic; font-weight:500; max-width:460px; margin:0 auto 20px; line-height:1.4; }
+  .signature{ margin-top:28px; font-family:'Fraunces',serif; font-size:18px; font-style:italic; }
+  .stamp-final{ width:64px; height:64px; margin:26px auto 0; opacity:0.85; }
+  footer{ text-align:center; padding:40px 24px 26px; font-size:13px; opacity:0.55; font-style:italic; }
+
+  @media (max-width:520px){
+    body{ font-size:17.5px; }
+    .chapter h2{ font-size:23px; }
+    .first-chapter p:first-of-type::first-letter{ font-size:48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TITLE PAGE -->
+<section class="title-page">
+  <div class="ripple-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 120" preserveAspectRatio="none">
+      <path d="M0,60 C150,100 250,20 400,55 C550,90 650,20 800,55 L800,120 L0,120 Z" fill="rgba(27,58,63,0.10)"/>
+      <path d="M0,80 C150,50 250,110 400,80 C550,50 650,110 800,80 L800,120 L0,120 Z" fill="rgba(27,58,63,0.16)"/>
+    </svg>
+  </div>
+  <div class="title-inner">
+    <div class="domain-tag">яванне.ру — регистрация в Роскомнадзоре не пройдена, в сердце Анны — да</div>
+    <div class="faculty">КАФЕДРА БАННЫХ И ПОГРУЖЁННЫХ НАУК</div>
+    <h1>О пользе орального <em>искусства</em><br>(и его уникального финала)</h1>
+    <div class="subtitle">малый трактат с погружением, но без утопления</div>
+    <div class="author-block">
+      <div class="author-name">профессор Александр Алексеев</div>
+      <div class="author-title">Умывальников Начальник и Мочалок Командир<sup>*</sup></div>
+    </div>
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 120 120" width="112" height="112">
+        <circle cx="60" cy="60" r="56" fill="#7A2331"/>
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#591825" stroke-width="2"/>
+        <circle cx="60" cy="60" r="47" fill="none" stroke="#EDE3CB" stroke-width="1.4" stroke-dasharray="2 4"/>
+        <text x="60" y="52" text-anchor="middle" fill="#EDE3CB" font-family="Fraunces, serif" font-size="13" font-style="italic">одобрено</text>
+        <text x="60" y="70" text-anchor="middle" fill="#EDE3CB" font-family="Fraunces, serif" font-size="13" font-style="italic">лично Анной</text>
+      </svg>
+    </div>
+    <p class="dedication">* мочалка здесь ровно одна, и она же — главный рецензента труда</p>
+  </div>
+  <div class="scroll-hint">↓ читать далее ↓</div>
+</section>
+
+<div class="wrap">
+
+  <section class="chapter first-chapter" style="padding-top:56px; border-top:none; margin-top:0;">
+    <span class="chapter-num">Глава I</span>
+    <h2>О названии домена и его тайном умысле</h2>
+    <p>«Яванне.ру» читается двояко: я в ванне — и я в Анне. Автор считает эту двусмысленность не игрой слов, A точным диагнозом собственного онтологического статуса. </p>
+  </section>
+
+  <section class="chapter">
+    <span class="chapter-num">Глава II</span>
+    <h2>Терапевтический эффект: смежные, но важные наблюдения</h2>
+    <p>Помимо очевидного, кафедра зафиксировала ряд косвенных эффектов, 
